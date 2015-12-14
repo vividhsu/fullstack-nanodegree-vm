@@ -5,11 +5,9 @@
 
 import psycopg2
 
-
 def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
     return psycopg2.connect("dbname=tournament")
-
 
 def deleteMatches():
     """Remove all the match records from the database."""
@@ -67,6 +65,12 @@ def playerStandings():
     standings = []
     conn = connect()
     cursor = conn.cursor()
+    '''
+    This query builds result table as below, order by win from max to min:
+    | id | name | win | lose |
+    wintable is used to calculate the wins for each player.
+    losetable is used to calculate the loses for each player. 
+    '''
     query = """
             select wintable.id, wintable.name, wintable.win, losetable.lose from 
               (select players.players_id as id, players.name as name, 
@@ -100,7 +104,8 @@ def reportMatch(winner, loser):
     """
     conn = connect()
     cursor = conn.cursor()
-    cursor.execute("insert into matches (winner, loser) values (%s, %s)", (winner, loser,))
+    cursor.execute("insert into matches (winner, loser) values (%s, %s)", \
+        (winner, loser,))
     conn.commit()
     conn.close()
 
@@ -119,7 +124,6 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-
     pairings = []
     standings = playerStandings()
     player_num = countPlayers()
