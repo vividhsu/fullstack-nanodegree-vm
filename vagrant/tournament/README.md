@@ -1,4 +1,4 @@
-# Project 1: Tournament Results
+# Project 2: Tournament Results
 
 We write a Python module that uses the PostgreSQL database to keep track of players and matches in a game tournament.
 This project has two parts: defining the database schema (SQL table definitions) in tournament.sql, and writing code that will use it to track a Swiss tournament in tournament.py.
@@ -6,7 +6,6 @@ This project has two parts: defining the database schema (SQL table definitions)
 ## Table of contents
 
 * [Quick start](#quick-start)
-* [Features](#features)
 
 
 
@@ -27,11 +26,3 @@ fullstack-nanodegree-vm/
       └──README.md
 
 ```
-
-## Features
-
-* design the structure of the tournament database
-* track a Swiss tournament
-
-
-
