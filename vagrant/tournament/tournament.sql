@@ -7,3 +7,19 @@
 -- these lines here.
 
 
+drop database if exists tournament;
+
+create database tournament;
+
+\c tournament;
+
+create table players (
+    players_id serial primary key,
+    name text
+);
+
+create table matches (
+    matches_id serial primary key,
+    winner serial references players(players_id),
+    loser serial references players(players_id)
+);
